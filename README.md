@@ -6,23 +6,23 @@ We'll train the MNIST model, save the model to the file, load the model from the
 We'll use Flask for exposing the model using the REST API for predictions. Flask is a micro web framework written in Python. It's lightweight and easy to learn.
 
 ### Follow the steps mentioned below
-### 1 Clone to repository
+### 1) Clone to repository
 ```python
 git clone https://github.com/cloudxlab/ml.git
 ```
 
-### 2 Set the Python path - On CloudxLab, the default installation is python2
+### 2) Set the Python path - On CloudxLab, the default installation is python2
 ```python
 export PATH=/usr/local/anaconda/bin/:$PATH
 ```
 
-### 3 Create virtual environment
+### 3) Create virtual environment
 ```python
 cd ml/projects/deploy_mnist/
 virtualenv -p python3 venv
 ```
 
-### 4 Activate virtual environment
+### 4) Activate virtual environment
 **What is virtual environment?**
 
 A virtual environment is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system.
@@ -35,7 +35,7 @@ We are activating the virtual environment using the following command:
 source venv/bin/activate
 ```
 
-### 5 Install the flask and other requirements
+### 5) Install the flask and other requirements
 **What does the requirements.txt file do?**
 
 If you have browsed any python projects on Github or elsewhere, you have probably noticed a file called requirements.txt This requirements.txt file is used for specifying what python packages are required to run the project you are looking at. Typically the requirements.txt file is located in the root directory of your project. If you open the requirements.txt file, you will see the following files:
@@ -58,7 +58,7 @@ Flask is a micro web framework written in Python. It is classified as a microfra
 
 pillow is the friendly PIL fork by [Alex Clark](https://github.com/python-pillow/Pillow/graphs/contributors) and Contributors. PIL is the Python Imaging Library by Fredrik Lundh and Contributors.
 
-### 6 Train the model
+### 6) Train the model
 The trained model will be saved in trained_models directory
 
 ```python
@@ -66,7 +66,7 @@ mkdir -p trained_models
 python train_mnist_model.py
 ```
 
-### 7 Start the flask server for predictions
+### 7) Start the flask server for predictions
 For the API code, see the file predictions.py under flask_app directory. Run the server on port 4041. If the port is already in use then use any of the port in the range of 4040 to 4060 as on CloudxLab only these ports are open for public access.
 
 ```python
@@ -77,7 +77,7 @@ export FLASK_APP=predictions.py
 flask run --host 0.0.0.0 --port 4041
 ```
 
-### 8 Predict the digit for the new image
+### 8) Predict the digit for the new image
 We will use the test images for predictions. Login to another console and run below commands.
 
 ```python
