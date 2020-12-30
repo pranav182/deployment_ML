@@ -7,24 +7,33 @@ We'll use Flask for exposing the model using the REST API for predictions. Flask
 
 ### Follow the steps mentioned below
 ### 1 Clone to repository
-> git clone https://github.com/cloudxlab/ml.git
+```python
+git clone https://github.com/cloudxlab/ml.git
+```
 
 ### 2 Set the Python path - On CloudxLab, the default installation is python2
-> export PATH=/usr/local/anaconda/bin/:$PATH
+```python
+export PATH=/usr/local/anaconda/bin/:$PATH
+```
 
 ### 3 Create virtual environment
-> cd ml/projects/deploy_mnist/
-> virtualenv -p python3 venv
+```python
+cd ml/projects/deploy_mnist/
+virtualenv -p python3 venv
+```
 
 ### 4 Activate virtual environment
 **What is virtual environment?**
+
 A virtual environment is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system.
 
 A virtual environment is a directory tree which contains Python executable files and other files which indicate that it is a virtual environment.
 
 The venv module provides support for creating lightweight “virtual environments” with their own site directories, optionally isolated from system site directories.
 We are activating the virtual environment using the following command:
-> source venv/bin/activate
+```python
+source venv/bin/activate
+```
 
 ### 5 Install the flask and other requirements
 **What does the requirements.txt file do?**
@@ -37,8 +46,9 @@ If you have browsed any python projects on Github or elsewhere, you have probabl
 - scikit-learn==0.20.3
 - pillow==6.0.0
 To run this project, we need to install these packages. We have saved them in the requirements.txt file so that they can be installed in one go using the following command:
-
-> pip install -r requirements.txt
+```python
+pip install -r requirements.txt
+```
 
 **What are these packages in the requirements.txt file?**
 
@@ -51,29 +61,35 @@ pillow is the friendly PIL fork by [Alex Clark](https://github.com/python-pillow
 ### 6 Train the model
 The trained model will be saved in trained_models directory
 
-> mkdir -p trained_models
-> python train_mnist_model.py
+```python
+mkdir -p trained_models
+python train_mnist_model.py
+```
 
 ### 7 Start the flask server for predictions
 For the API code, see the file predictions.py under flask_app directory. Run the server on port 4041. If the port is already in use then use any of the port in the range of 4040 to 4060 as on CloudxLab only these ports are open for public access.
 
-> cd flask_app
-> export LC_ALL=en_US.utf-8
-> export LANG=en_US.utf-8
-> export FLASK_APP=predictions.py
-> flask run --host 0.0.0.0 --port 4041
+```python
+cd flask_app
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+export FLASK_APP=predictions.py
+flask run --host 0.0.0.0 --port 4041
+```
 
 ### 8 Predict the digit for the new image
 We will use the test images for predictions. Login to another console and run below commands.
 
-> cd ml/projects/deploy_mnist/
-> curl -F 'file=@test-images/7.png' 127.0.0.1:4041/predict
+```python
+cd ml/projects/deploy_mnist/
+curl -F 'file=@test-images/7.png' 127.0.0.1:4041/predict
+```
 
 **What does the curl command do?**
 
 The curl command transfers data to or from a network server, using one of the supported protocols (HTTP, HTTPS, FTP, FTPS, SCP, SFTP, TFTP, DICT, TELNET, LDAP or FILE). Let’s explain the working of the following line:
 
-**curl -F 'file=@test-images/7.png' 127.0.0.1:4041/predict**
+> curl -F 'file=@test-images/7.png' 127.0.0.1:4041/predict
 
 Here we are executing the curl command to transfer data, which in this case is the 7.png file, to the server at the address 127.0.0.1:4041/predict so that, you guessed it right, the script train_mnist_model.py can predict the image.
 
